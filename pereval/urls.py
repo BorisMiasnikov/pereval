@@ -19,6 +19,12 @@ from django.contrib import admin
 from django.urls import path
 
 from pereval import settings
+from rest_framework import routers, viewsets
+from tourism import views
+
+router = routers.DefaultRouter()
+router.register(r'pereval', viewsets.PerevalViewset, basename= 'pereval')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),

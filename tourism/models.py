@@ -48,7 +48,7 @@ class Pereval(models.Model):  # сущность объявления
     coords_id = models.ForeignKey(Coords, on_delete=models.CASCADE)
     level_id = models.ForeignKey(Level, on_delete=models.CASCADE)
     status = models.CharField(choices=ststus_choices, default='new')
-    #добавил коментарий для проверки ветки
+    # добавил коментарий для проверки ветки
 
 
 class Imeges(models.Model):
