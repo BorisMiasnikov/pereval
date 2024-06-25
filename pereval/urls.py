@@ -16,11 +16,11 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from pereval import settings
-from rest_framework import routers, viewsets
-from tourism import views
+from rest_framework import routers
+from tourism import viewsets
 
 router = routers.DefaultRouter()
 router.register(r'pereval', viewsets.PerevalViewset, basename= 'pereval')
@@ -28,6 +28,9 @@ router.register(r'pereval', viewsets.PerevalViewset, basename= 'pereval')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    # этим подклучается авторизация для DRF
+    path('api/', include(router.urls)),
 ]
 
 if settings.DEBUG:
