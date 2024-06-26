@@ -28,8 +28,6 @@ router.register(r'pereval', viewsets.PerevalViewset, basename= 'pereval')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    # этим подклучается авторизация для DRF
     path('api/', include(router.urls)),
 ]
 
