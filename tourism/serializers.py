@@ -27,13 +27,12 @@ class LevelSerializer(serializers.ModelSerializer):
         ]
 
 
-
-
 class ImegesSerializer(serializers.ModelSerializer):
+    data = serializers.URLField
     class Meta:
         model = Imeges
         fields = [
-            'pereval_id', 'data', 'title',
+            'data', 'title',
         ]
 
 
@@ -42,9 +41,10 @@ class PerevalSerializer(WritableNestedModelSerializer):
         model = Pereval
         fields = [
             'beauty_title', 'title', 'other_titles', 'connect',
-            'users', 'coords', 'level', 'imeges',
+            'user', 'coords', 'level', 'imeges',
         ]
+
     user = UsersSerializer()
     coords = CoordsSerializer()
     level = LevelSerializer()
-    imeges = ImegesSerializer()
+    imeges = ImegesSerializer(many=True)
