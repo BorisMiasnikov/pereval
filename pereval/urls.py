@@ -23,7 +23,7 @@ from rest_framework import routers
 from tourism import viewsets
 
 router = routers.DefaultRouter()
-router.register(r'pereval', viewsets.PerevalViewset, basename= 'pereval')
+router.register(r'submitData', viewsets.PerevalViewset, basename= 'pereval')
 
 
 urlpatterns = [

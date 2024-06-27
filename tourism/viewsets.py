@@ -25,6 +25,13 @@ class PerevalViewset(viewsets.ModelViewSet):
     queryset = Pereval.objects.all()
     serializer_class = PerevalSerializer
 
+    # def create(self, request, *args, **kwargs):
+    #     print(request)
+    #     print(args)
+    #     print(kwargs)
+    #     return self.request
+
+
 
 class ImegesViewset(viewsets.ModelViewSet):
     queryset = Imeges.objects.all()
