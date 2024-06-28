@@ -28,7 +28,7 @@ class LevelSerializer(serializers.ModelSerializer):
 
 
 class ImegesSerializer(serializers.ModelSerializer):
-    data = serializers.URLField
+    data = serializers.URLField()
     class Meta:
         model = Imeges
         fields = (
@@ -50,7 +50,6 @@ class PerevalSerializer(serializers.ModelSerializer): # ручная распа�
             'user', 'coords', 'level', 'imeges',
         )
     def create(self, validated_data, **kwargs):
-        print(validated_data)
         user_dict = validated_data.pop('user')
         coords_dict = validated_data.pop('coords')
         level_dict = validated_data.pop('level')
@@ -63,14 +62,14 @@ class PerevalSerializer(serializers.ModelSerializer): # ручная распа�
         level = Level.objects.create(**level_dict)
         pereval = Pereval.objects.create(
             **validated_data,
-            users_id=user,
-            coords_id=coords,
-            level_id=level,
+            user=user,
+            coords=coords,
+            level=level,
         )
         for imege in imeges_list:
             Imeges.objects.create(
-                pereval_id = pereval,
-                data=imege.pop["data"],
-                title=imege.pop["title"],
+                pereval = pereval,
+                data=imege.pop("data"),
+                title=imege.pop("title"),
             )
         return pereval
