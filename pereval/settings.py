@@ -77,7 +77,6 @@ WSGI_APPLICATION = 'pereval.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-print(os.getenv('FSTR_DB_HOST'))
 DATABASES = {
     'default': {
         'ENGINE': os.getenv('FSTR_DB_HOST'),
