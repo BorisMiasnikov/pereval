@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os.path
 from pathlib import Path
+from  dotenv import load_dotenv, find_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'django.contrib.sessions'
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tourism',
@@ -75,14 +77,15 @@ WSGI_APPLICATION = 'pereval.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+print(os.getenv('FSTR_DB_HOST'))
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db.pereval',
+        'ENGINE': os.getenv('FSTR_DB_HOST'),
+        'NAME': os.getenv('FSTR_DB_LOGIN'),
         'USER': 'postgres',
-        'PASSWORD': '020997',
+        'PASSWORD': os.getenv('FSTR_DB_PASS'),
         'HOST': 'localhost',
-        'PORT': '5432',
+        'PORT': os.getenv('FSTR_DB_PORT'),
     },
 }
 
