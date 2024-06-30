@@ -26,10 +26,10 @@ class Level(models.Model):
         ('3B*', '3Б*'),
 
     )
-    winter = models.CharField(max_length=3, choices=LEVEL, null=True)
-    summer = models.CharField(max_length=3, choices=LEVEL, null=True)
-    autumn = models.CharField(max_length=3, choices=LEVEL, null=True)
-    spring = models.CharField(max_length=3, choices=LEVEL, null=True)
+    winter = models.CharField(max_length=3, choices=LEVEL, null=True, blank= True)
+    summer = models.CharField(max_length=3, choices=LEVEL, null=True, blank= True)
+    autumn = models.CharField(max_length=3, choices=LEVEL, null=True, blank= True)
+    spring = models.CharField(max_length=3, choices=LEVEL, null=True, blank= True)
 
 
 class Pereval(models.Model):  # сущность объявления
@@ -41,17 +41,17 @@ class Pereval(models.Model):  # сущность объявления
     )
     beauty_title = models.CharField(max_length=255, default="пер.")
     title = models.CharField(max_length=255)
-    other_titles = models.CharField(max_length=255, null=True)
-    connect = models.CharField(max_length=255)
+    other_titles = models.CharField(max_length=255, null=True, blank= True)
+    connect = models.CharField(max_length=255, null=True, blank= True)
     add_time = models.DateTimeField(auto_now_add=True)
-    users_id = models.ForeignKey(Users, on_delete=models.CASCADE)
-    coords_id = models.ForeignKey(Coords, on_delete=models.CASCADE)
-    level_id = models.ForeignKey(Level, on_delete=models.CASCADE)
+    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name= 'user')
+    coords = models.ForeignKey(Coords, on_delete=models.CASCADE, related_name='coords')
+    level = models.ForeignKey(Level, on_delete=models.CASCADE, related_name='level')
     status = models.CharField(choices=ststus_choices, default='new')
     # эта надпись есть только в мастере
 
 
 class Imeges(models.Model):
-    pereval_id = models.ForeignKey(Pereval, on_delete=models.CASCADE)
+    pereval = models.ForeignKey(Pereval, related_name= 'imeges', on_delete=models.CASCADE)
     data = models.ImageField(upload_to='pereval/', null=True, blank=True)
-    title = models.CharField(max_length=255, null=True)
+    title = models.CharField(max_length=255, null=True, blank= True)
