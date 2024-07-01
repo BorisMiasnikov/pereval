@@ -38,6 +38,7 @@ class Pereval(models.Model):  # сущность объявления
         ('pending', 'pending'),
         ('accepted', 'accepted'),
         ('rejected', 'rejected'),
+        ('new', 'new'),
     )
     beauty_title = models.CharField(max_length=255, default="пер.")
     title = models.CharField(max_length=255)

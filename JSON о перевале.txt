@@ -24,3 +24,42 @@
     },
     "imeges": [{"data":"https://www.yandex.ru/search.jpg", "title":"Седловина"}, {"data":"https://www.yandex.ru/search.jpg", "title":"Подъём"}]
 }
+
+Редактирование перевала
+
+{
+    "id": 9,
+    "beauty_title": "пер.",
+    "title": "Пхия",
+    "other_titles": "Триев",
+    "connect": "для заполнения",
+    "user": {
+        "email": "qwerty@mail.ru",
+        "fam": "Пупкин",
+        "name": "Василий",
+        "otc": "Иванович",
+        "phone": "+7 555 55 55"
+    },
+    "coords": {
+        "latitude": "45.38420000",
+        "longitude": "7.15250000",
+        "hight": 1200
+    },
+    "level": {
+        "winter": "1А",
+        "summer": "",
+        "autumn": "1А",
+        "spring": "1А"
+    },
+    "imeges": [
+        {
+            "data": "https://www.yandex.ru/search.jpg",
+            "title": "Седловина"
+        },
+        {
+            "data": "https://www.yandex.ru/search.jpg",
+            "title": "Подъём"
+        }
+    ],
+    "status": "pending"
+}

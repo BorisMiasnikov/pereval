@@ -6,10 +6,10 @@ from rest_framework.response import Response
 from tourism.serializers import *
 from tourism.models import *
 
+
 class UsersViewset(viewsets.ModelViewSet):
     queryset = Users.objects.all()
     serializer_class = UsersSerializer
-
 
 
 class CoordsViewset(viewsets.ModelViewSet):
@@ -27,10 +27,9 @@ class PerevalViewset(viewsets.ModelViewSet):
     serializer_class = PerevalSerializer
 
     def create(self, request, *args, **kwargs):
-        serializer = PerevalSerializer(data= request.data)
+        serializer = PerevalSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            print(serializer.data)
             return Response({
                 'status': status.HTTP_200_OK,
                 'massage': "OK",
@@ -49,7 +48,8 @@ class PerevalViewset(viewsets.ModelViewSet):
                 'id': None,
             })
 
-
+    # def update(self, request, *args, **kwargs):
+    #     serializer = PerevalSerializer(data= request.data)
 
 
 class ImegesViewset(viewsets.ModelViewSet):
