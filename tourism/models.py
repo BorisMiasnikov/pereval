@@ -49,7 +49,6 @@ class Pereval(models.Model):  # сущность объявления
     coords = models.ForeignKey(Coords, on_delete=models.CASCADE, related_name='coords')
     level = models.ForeignKey(Level, on_delete=models.CASCADE, related_name='level')
     status = models.CharField(choices=ststus_choices, default='new')
-    # эта надпись есть только в мастере
 
 
 class Imeges(models.Model):

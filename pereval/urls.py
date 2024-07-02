@@ -24,6 +24,8 @@ from tourism import viewsets
 
 router = routers.DefaultRouter()
 router.register(r'submitData', viewsets.PerevalViewset, basename= 'pereval')
+router.register(r'getData', viewsets.PerevalViewset, basename= 'user_pereval')
+
 
 
 urlpatterns = [

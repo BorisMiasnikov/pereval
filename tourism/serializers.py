@@ -77,28 +77,18 @@ class PerevalSerializer(serializers.ModelSerializer):  # ручная распа
             )
         return pereval
 
-    def update(self, instance, validated_data):  # instance - передает созданный объект модели, validated_data - передает введенный JSON
-        if instance.status == "new":
-            user_dict = validated_data.pop('user')
-            coords_dict = validated_data.pop('coords')
-            level_dict = validated_data.pop('level')
-            imeges = validated_data.pop('imeges')
-            print(coords_dict["latitude"])
-            # instance.coords.update(**coords_dict)
-            instance.coords.update(latitude = coords_dict["latitude"])
+    def validate(self, data):
+        if self.instance is not None:
+            instance_user = self.instance.user
+            data_user = data.get("user")
+            valudating_user_field = [
+                instance_user.fam != data_user['fam'],
+                instance_user.name != data_user['name'],
+                instance_user.otc != data_user['otc'],
+                instance_user.phone != data_user['phone'],
+                instance_user.email != data_user['email'],
 
-            instance.level.objects.update(**level_dict)
-
-            imege_list = Imeges.objects.filter(pereval = instance)
-            counter = 0
-            for imege in imeges:
-                imege_list[counter].update(
-                    data=imege.pop("data"),
-                    title=imege.pop("title"),
-                )
-                counter +=1
-
-            pereval = instance.update(
-                **validated_data
-            )
-            return pereval
+            ]
+            if data_user is not None and any(valudating_user_field):
+                raise serializers.ValidationError({"отклонено": "Нельзя менять данные пользователя"})
+        return data
