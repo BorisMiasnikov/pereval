@@ -27,16 +27,16 @@ from drf_yasg import openapi
 router = routers.DefaultRouter()
 router.register(r'submitData', viewsets.PerevalViewset, basename='pereval')
 
-#Из документации свагера
+# Из документации свагера
 schema_view = get_schema_view(
-   openapi.Info(
-      title="Pereval API",
-      default_version='v1',
-      description="Test description",
-      license=openapi.License(name="BSD License"),
-   ),
-   public=True,
-   permission_classes=(permissions.AllowAny,),
+    openapi.Info(
+        title="Pereval API",
+        default_version='v1',
+        description="Test description",
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
 )
 
 urlpatterns = [

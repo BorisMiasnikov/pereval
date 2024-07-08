@@ -62,3 +62,10 @@
 Метод GET /api/submitData/?user__email=qwerty%40mail.ru возвращает все добавленные перевалы пользователя с email - qwerty@mail.ru
 
 Метод PATCH /api/submitData/10/ изменяет данные о перевале пользователем, пока перевал имеет статус "new", так же пользователь не может менять данные о себе в этом запросе.
+
+
+Автодокументация реализована с помощью библиотеки drf-yasg, доступные ендпоинты :
+
+    path('swagger<format>\.json\.yaml', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
