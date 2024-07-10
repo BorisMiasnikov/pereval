@@ -1,3 +1,5 @@
+import json
+
 from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APITestCase
@@ -38,6 +40,49 @@ class PerevalApiTestCase(APITestCase):
         self.assertEquals(serializer_data, response.data)
         self.assertEquals(status.HTTP_200_OK, response.status_code)
 
+    def test_user_update(self):
+        url = reverse("pereval-detail", args=(self.pereval_1.id,))
+        data = {
+            "id": 1,
+            "beauty_title": "perev.2",
+            "title": "123gora2",
+            "other_titles": "pereval2",
+            "connect": "connect2",
+            "user": {
+                "email": "try2@try.ru",
+                "fam": "Петрров2",
+                "name": "Петр2",
+                "otc": "Петрович2",
+                "phone": "88005553539"
+            },
+            "coords": {
+                "latitude": "45.38420000",
+                "longitude": "7.15250000",
+                "hight": 1200
+            },
+            "level": {
+                "winter": "1A",
+                "summer": "1A",
+                "autumn": "1A",
+                "spring": "1A"
+            },
+            "imeges": [
+                {
+                    "data": "https://www.yandex.ru/search.jpg",
+                    "title": "Седловина"
+                },
+                {
+                    "data": "https://www.yandex.ru/search.jpg",
+                    "title": "Подъём"
+                }
+            ],
+        }
+        json_data = json.dumps(data)
+        response = self.client.patch(url, data = json_data, content_type= 'application/json')
+
+        self.assertEquals(status.HTTP_200_OK, response.status_code)
+        self.pereval_1.refresh_from_db()
+        self.assertEquals("try@try.ru", self.pereval_1.user.email)
 
 class PerevalSerializerTestCase(TestCase):
     def setUp(self):
@@ -56,7 +101,7 @@ class PerevalSerializerTestCase(TestCase):
     def test_check(self):
         serializer_data = PerevalSerializer(self.pereval_1).data
         expected_data = {
-            "id": 3,
+            "id": 4,
             "beauty_title": "perev.",
             "title": "123gora",
             "other_titles": "pereval",
