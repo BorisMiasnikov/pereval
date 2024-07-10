@@ -18,7 +18,7 @@ coverage html - создает папку htmlcov\index.html и в ней отч
 
 class PerevalApiTestCase(APITestCase):
     def setUp(self):
-        self.user_1 = Users.objects.create(email="try@try.ru", fam="Петрров", name="Петр", otc="Петрович",
+        self.user_1 = Users.objects.create(email="try@try.ru", fam="Петров", name="Петр", otc="Петрович",
                                            phone="88005553535")
         self.coords_1 = Coords.objects.create(latitude=45.3842, longitude=7.1525, hight=1200)
         self.level_1 = Level.objects.create(winter="1A", summer="1A", autumn="1A", spring="1A", )
@@ -43,28 +43,22 @@ class PerevalApiTestCase(APITestCase):
     def test_user_update(self):
         url = reverse("pereval-detail", args=(self.pereval_1.id,))
         data = {
-            "id": 1,
+            "id": 3,
             "beauty_title": "perev.2",
             "title": "123gora2",
             "other_titles": "pereval2",
             "connect": "connect2",
             "user": {
-                "email": "try2@try.ru",
-                "fam": "Петрров2",
-                "name": "Петр2",
-                "otc": "Петрович2",
-                "phone": "88005553539"
+                "email": "try@try.ru",
+                "fam": "Изменено",
+                "name": "Изменено",
+                "otc": "Изменено",
+                "phone": "Изменено"
             },
             "coords": {
                 "latitude": "45.38420000",
                 "longitude": "7.15250000",
                 "hight": 1200
-            },
-            "level": {
-                "winter": "1A",
-                "summer": "1A",
-                "autumn": "1A",
-                "spring": "1A"
             },
             "imeges": [
                 {
@@ -78,11 +72,51 @@ class PerevalApiTestCase(APITestCase):
             ],
         }
         json_data = json.dumps(data)
-        response = self.client.patch(url, data = json_data, content_type= 'application/json')
-
+        response = self.client.patch(path = url, content_type= 'application/json', data = json_data)
         self.assertEquals(status.HTTP_200_OK, response.status_code)
         self.pereval_1.refresh_from_db()
         self.assertEquals("try@try.ru", self.pereval_1.user.email)
+        self.assertEquals("Петров", self.pereval_1.user.fam)
+        self.assertEquals("Петр", self.pereval_1.user.name)
+        self.assertEquals("Петрович", self.pereval_1.user.otc)
+
+        def test_pereval_update(self):
+            url = reverse("pereval-detail", args=(self.pereval_1.id,))
+            data = {
+                "id": 3,
+                "beauty_title": "Изменено",
+                "title": "Изменено",
+                "other_titles": "Изменено",
+                "connect": "Изменено",
+                "user": {
+                    "email": "try@try.ru",
+                    "fam": "Петров",
+                    "name": "Петр",
+                    "otc": "Петрович",
+                    "phone": "88005553535"
+                },
+                "coords": {
+                    "latitude": "45.38420000",
+                    "longitude": "7.15250000",
+                    "hight": 1200
+                },
+                "imeges": [
+                    {
+                        "data": "https://www.yandex.ru/search.jpg",
+                        "title": "Седловина"
+                    },
+                    {
+                        "data": "https://www.yandex.ru/search.jpg",
+                        "title": "Подъём"
+                    }
+                ],
+            }
+            json_data = json.dumps(data)
+            response = self.client.patch(path=url, content_type='application/json', data=json_data)
+            self.assertEquals(status.HTTP_200_OK, response.status_code)
+            self.pereval_1.refresh_from_db()
+            self.assertEquals("Изменено", self.pereval_1.beauty_title)
+
 
 class PerevalSerializerTestCase(TestCase):
     def setUp(self):
