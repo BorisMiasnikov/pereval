@@ -80,42 +80,42 @@ class PerevalApiTestCase(APITestCase):
         self.assertEquals("Петр", self.pereval_1.user.name)
         self.assertEquals("Петрович", self.pereval_1.user.otc)
 
-        def test_pereval_update(self):
-            url = reverse("pereval-detail", args=(self.pereval_1.id,))
-            data = {
-                "id": 3,
-                "beauty_title": "Изменено",
-                "title": "Изменено",
-                "other_titles": "Изменено",
-                "connect": "Изменено",
-                "user": {
-                    "email": "try@try.ru",
-                    "fam": "Петров",
-                    "name": "Петр",
-                    "otc": "Петрович",
-                    "phone": "88005553535"
+    def test_pereval_update(self):
+        url = reverse("pereval-detail", args=(self.pereval_1.id,))
+        data = {
+            "id": 3,
+            "beauty_title": "Изменено",
+            "title": "Изменено",
+            "other_titles": "Изменено",
+            "connect": "Изменено",
+            "user": {
+                "email": "try@try.ru",
+                "fam": "Петров",
+                "name": "Петр",
+                "otc": "Петрович",
+                "phone": "88005553535"
+            },
+            "coords": {
+                "latitude": "45.38420000",
+                "longitude": "7.15250000",
+                "hight": 1200
+            },
+            "imeges": [
+                {
+                    "data": "https://www.yandex.ru/search.jpg",
+                    "title": "Седловина"
                 },
-                "coords": {
-                    "latitude": "45.38420000",
-                    "longitude": "7.15250000",
-                    "hight": 1200
-                },
-                "imeges": [
-                    {
-                        "data": "https://www.yandex.ru/search.jpg",
-                        "title": "Седловина"
-                    },
-                    {
-                        "data": "https://www.yandex.ru/search.jpg",
-                        "title": "Подъём"
-                    }
-                ],
-            }
-            json_data = json.dumps(data)
-            response = self.client.patch(path=url, content_type='application/json', data=json_data)
-            self.assertEquals(status.HTTP_200_OK, response.status_code)
-            self.pereval_1.refresh_from_db()
-            self.assertEquals("Изменено", self.pereval_1.beauty_title)
+                {
+                    "data": "https://www.yandex.ru/search.jpg",
+                    "title": "Подъём"
+                }
+            ],
+        }
+        json_data = json.dumps(data)
+        response = self.client.patch(path=url, content_type='application/json', data=json_data)
+        self.assertEquals(status.HTTP_200_OK, response.status_code)
+        self.pereval_1.refresh_from_db()
+        self.assertEquals("Изменено", self.pereval_1.beauty_title)
 
 
 class PerevalSerializerTestCase(TestCase):
@@ -135,7 +135,7 @@ class PerevalSerializerTestCase(TestCase):
     def test_check(self):
         serializer_data = PerevalSerializer(self.pereval_1).data
         expected_data = {
-            "id": 4,
+            "id": 5,
             "beauty_title": "perev.",
             "title": "123gora",
             "other_titles": "pereval",

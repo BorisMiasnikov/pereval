@@ -69,3 +69,36 @@
     path('swagger<format>\.json\.yaml', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+
+API и сериалайзер покрыты тестами на основе расширений django.test - TestCase
+rest_framework.test-APITestCase в файле tests.py
+Результат покрытия тестов собран библиотекой coverage 
+Name                                                                                 Stmts   Miss  Cover
+--------------------------------------------------------------------------------------------------------
+manage.py                                                                               11      2    82%
+pereval\__init__.py                                                                      0      0   100%
+pereval\asgi.py                                                                          4      4     0%
+pereval\settings.py                                                                     24      0   100%
+pereval\urls.py                                                                         14      0   100%
+pereval\wsgi.py                                                                          4      4     0%
+tourism\__init__.py                                                                      0      0   100%
+tourism\admin.py                                                                         1      0   100%
+tourism\apps.py                                                                          4      0   100%
+tourism\migrations\0001_initial.py                                                       6      0   100%
+tourism\migrations\0002_remove_level_pereval_id_pereval_level_id_and_more.py             5      0   100%
+tourism\migrations\0003_alter_pereval_connect.py                                         4      0   100%
+tourism\migrations\0004_alter_pereval_coords_id_alter_pereval_level_id_and_more.py       5      0   100%
+tourism\migrations\0005_rename_coords_id_pereval_coords_and_more.py                      4      0   100%
+tourism\migrations\0006_rename_users_pereval_user.py                                     4      0   100%
+tourism\migrations\0008_alter_imeges_title_alter_level_autumn_and_more.py                4      0   100%
+tourism\migrations\0009_alter_pereval_status.py                                          4      0   100%
+tourism\migrations\__init__.py                                                           0      0   100%
+tourism\models.py                                                                       32      0   100%
+tourism\serializers.py                                                                  38      0   100%
+tourism\tests.py                                                                        58      0   100%
+tourism\views.py                                                                         1      1     0%
+tourism\viewsets.py                                                                     40      9    78%
+--------------------------------------------------------------------------------------------------------
+TOTAL                                                                                  272     20    93%
+
+
