@@ -30,10 +30,10 @@ router.register(r'submitData', viewsets.PerevalViewset, basename='pereval')
 # Из документации свагера
 schema_view = get_schema_view(
     openapi.Info(
-        title="Pereval API",
+        title='Pereval API',
         default_version='v1',
-        description="Test description",
-        license=openapi.License(name="BSD License"),
+        description='Test description',
+        license=openapi.License(name='BSD License'),
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),

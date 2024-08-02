@@ -3,13 +3,12 @@
     "title": "Пхия",
     "other_titles": "Триев",
     "connect": "",
-    "add_time": "2021-09-22 13:18:13",
     "user": {
         "email": "qwerty@mail.ru",
         "fam": "Пупкин",
         "name": "Василий",
         "otc": "Иванович",
-        "phone": "+7 555 55 55"
+        "phone": "8-800-555-35-35"
     },
     "coords": {
         "latitude": 45.3842,
@@ -22,7 +21,7 @@
         "autumn": "1А",
         "spring": "1А"
     },
-    "imeges": [{"data":"https://www.yandex.ru/search.jpg", "title":"Седловина"}, {"data":"https://www.yandex.ru/search.jpg", "title":"Подъём"}]
+    "imeges": [{"data":"https://dicovage.com/image/data/journal2/blog/cikavinki/Dorohu/190.jpg", "title":"Седловина"}, {"data":"https://the-na.me/wp-content/uploads/2013/10/441805_original.jpg", "title":"Подъём"}]
 }
 
 Редактирование перевала

@@ -3,10 +3,10 @@ from django.db import models
 
 class Users(models.Model):
     email = models.EmailField(max_length=255)
-    fam = models.CharField(max_length=255, default="Иванов")
-    name = models.CharField(max_length=255, default="Иван")
-    otc = models.CharField(max_length=255, default="Иванович")
-    phone = models.CharField(max_length=255, default="8 800 555 35 35")
+    fam = models.CharField(max_length=255, default='Иванов')
+    name = models.CharField(max_length=255, default='Иван')
+    otc = models.CharField(max_length=255, default='Иванович')
+    phone = models.CharField(max_length=255, default='8 800 555 35 35')
 
 
 class Coords(models.Model):
