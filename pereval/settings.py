@@ -77,15 +77,22 @@ WSGI_APPLICATION = 'pereval.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': os.getenv('FSTR_DB_HOST'),
+#         'NAME': os.getenv('FSTR_DB_LOGIN'),
+#         'USER': 'postgres',
+#         'PASSWORD': os.getenv('FSTR_DB_PASS'),
+#         'HOST': 'localhost',
+#         'PORT': os.getenv('FSTR_DB_PORT'),
+#     },
+# }
+# Для запуска на онлайн ресурсе, переделал БД на SQLite
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('FSTR_DB_HOST'),
-        'NAME': os.getenv('FSTR_DB_LOGIN'),
-        'USER': 'postgres',
-        'PASSWORD': os.getenv('FSTR_DB_PASS'),
-        'HOST': 'localhost',
-        'PORT': os.getenv('FSTR_DB_PORT'),
-    },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 # Password validation

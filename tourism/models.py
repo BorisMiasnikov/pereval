@@ -48,7 +48,7 @@ class Pereval(models.Model):  # сущность объявления
     user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name= 'user')
     coords = models.ForeignKey(Coords, on_delete=models.CASCADE, related_name='coords')
     level = models.ForeignKey(Level, on_delete=models.CASCADE, related_name='level')
-    status = models.CharField(choices=ststus_choices, default='new')
+    status = models.CharField(choices=ststus_choices, default='new', max_length= 10)
 
 
 class Imeges(models.Model):
